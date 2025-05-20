@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "HJuEFYkrf7sENRgovxsi26hfpNBIzZy6rne8tpHD5qA=",
+  "Source": "Steps.Api",
+  "BasePath": "_content/Steps.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

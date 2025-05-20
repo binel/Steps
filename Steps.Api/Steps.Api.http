@@ -1,0 +1,6 @@
+@Steps.Api_HostAddress = http://localhost:5079
+
+GET {{Steps.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

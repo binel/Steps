@@ -78,3 +78,29 @@
     background-color: #e74c3c;
     color: white;
   }
+
+  .steps-table input[type="date"],
+.steps-table input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Add button in input row */
+.steps-table .add-btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.steps-table .add-btn:hover {
+  background-color: #27ae60;
+}
