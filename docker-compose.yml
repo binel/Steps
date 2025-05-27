@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./Steps.Api
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - appnet
+
+  frontend:
+    build:
+      context: ./steps-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://api:80
+    networks:
+      - appnet
+
+networks:
+  appnet:

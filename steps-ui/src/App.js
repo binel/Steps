@@ -4,6 +4,8 @@ import StepProgress from './StepProgress';
 import Stats from './Stats';
 import StepsTable from './StepsTable';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const filterStepsAfterDate = (data, cutoffDate) => {
   const cutoff = new Date(cutoffDate);
   return data.filter(entry => new Date(entry.date) >= cutoff);
@@ -37,7 +39,7 @@ function computeTotalSteps(data) {
 
 function App() {
   const loadSteps = () => {
-    fetch('http://localhost:5079/steps/getStepEntries')
+    fetch(`${apiUrl}/steps/getStepEntries`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`Server responded with status ${res.status}`);
@@ -56,7 +58,7 @@ function App() {
         Date: addData.date
     };
 
-    fetch('http://localhost:5079/steps/addEntry', {
+    fetch(`${apiUrl}/steps/addEntry`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -76,7 +78,7 @@ function App() {
   }  
 
   const onDelete = (deleteId) => {
-    fetch(`http://localhost:5079/steps/deleteEntry?id=${deleteId}`, {
+    fetch(`${apiUrl}/steps/deleteEntry?id=${deleteId}`, {
       method: 'DELETE',
       headers: {
       },

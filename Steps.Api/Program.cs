@@ -33,7 +33,15 @@ public class Program
                 policy.WithOrigins("http://localhost:3000") // temporary
                     .AllowAnyMethod()
                     .AllowAnyHeader();
+
+                policy.WithOrigins("http://stepsui:3000") // docker compose setup
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
+        });
+
+        builder.WebHost.ConfigureKestrel(serverOptions => {
+            serverOptions.ListenAnyIP(5079);
         });
 
         var app = builder.Build();
