@@ -39,6 +39,7 @@ function computeTotalSteps(data) {
 
 function App() {
   const loadSteps = () => {
+    console.log(`trying to call with url ${apiUrl}`);
     fetch(`${apiUrl}/steps/getStepEntries`)
         .then((res) => {
           if (!res.ok) {

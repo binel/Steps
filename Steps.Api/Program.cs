@@ -34,14 +34,14 @@ public class Program
                     .AllowAnyMethod()
                     .AllowAnyHeader();
 
-                policy.WithOrigins("http://stepsui:3000") // docker compose setup
+                policy.WithOrigins("http://homelab.io:3000") // docker compose setup
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
         });
 
         builder.WebHost.ConfigureKestrel(serverOptions => {
-            serverOptions.ListenAnyIP(5079);
+            serverOptions.ListenAnyIP(80);
         });
 
         var app = builder.Build();
