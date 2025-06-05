@@ -37,6 +37,10 @@ public class Program
                 policy.WithOrigins("http://homelab.io:3000") // docker compose setup
                     .AllowAnyMethod()
                     .AllowAnyHeader();
+
+                policy.WithOrigins("http://homelab.io") // k3s setup 
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
         });
 
@@ -45,6 +49,9 @@ public class Program
         });
 
         var app = builder.Build();
+
+        // k3s base path, probably breaks docker compose setup
+        app.UsePathBase("/api");
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

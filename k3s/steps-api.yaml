@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: steps-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: steps-api
+  template:
+    metadata:
+      labels:
+        app: steps-api
+    spec:
+      containers:
+        - name: steps-api
+          image: localhost/steps-api:latest 
+          imagePullPolicy: IfNotPresent
+          args: ["Data Source=/app/data/steps.db"]
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+          volumeMounts:
+            - name: steps-sqlite-data
+              mountPath: /app/data
+      volumes:
+        - name: steps-sqlite-data
+          persistentVolumeClaim:
+            claimName: steps-sqlite-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: steps-api
+spec:
+  type: NodePort
+  selector:
+    app: steps-api
+  ports:
+    - port: 80
+      targetPort: 80
+      
