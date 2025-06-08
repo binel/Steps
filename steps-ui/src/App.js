@@ -100,16 +100,7 @@ function App() {
     loadSteps();
   }, []);
 
-  const [stepsData, setStepsData] = useState([
-    { date: '2025-05-19', steps: 2474 },
-    { date: '2025-05-18', steps: 11152 },
-    { date: '2025-05-17', steps: 11650 },
-    { date: '2025-05-16', steps: 9615 },
-    { date: '2025-05-15', steps: 10909 },
-    { date: '2025-05-14', steps: 10761 },
-    { date: '2025-05-13', steps: 11313 },
-    { date: '2025-05-12', steps: 10970 },
-  ]);
+  const [stepsData, setStepsData] = useState([]);
   
   const days = stepsData.length;
   const weekData = getWeekData(stepsData);
