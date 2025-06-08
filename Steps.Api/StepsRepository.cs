@@ -3,14 +3,24 @@ using Microsoft.Data.Sqlite;
 
 namespace Steps.Api;
 
+/// <summary>
+/// Repository for storing information about steps in the database
+/// </summary>
 public class StepsRepository {
 
     private readonly SqliteConnection _connection;
 
+    /// <summary>
+    /// Primary constructor 
+    /// </summary>
+    /// <param name="database"></param>
     public StepsRepository(Database database) {
         _connection = database.GetConnection();
     }
 
+    /// <summary>
+    /// Creates the sqlite table for steps if it does not already exist
+    /// </summary>
     public void CreateTableIfNotExists() {
         SqliteCommand tableCmd = _connection.CreateCommand();
 
@@ -26,6 +36,10 @@ public class StepsRepository {
         _ = tableCmd.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Adds the given steps entry to the database
+    /// </summary>
+    /// <param name="steps"></param>
     public void Add(StepsEntry steps) {
         SqliteCommand insertCmd = _connection.CreateCommand();
         insertCmd.CommandText =
@@ -42,6 +56,10 @@ public class StepsRepository {
         _ = insertCmd.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Deletes the given steps entry from the database
+    /// </summary>
+    /// <param name="id">Database key of the entry to delete</param>
     public void Delete(long id) {
         SqliteCommand deleteCmd = _connection.CreateCommand();
         deleteCmd.CommandText =
@@ -54,6 +72,11 @@ public class StepsRepository {
         _ = deleteCmd.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Returns all step entries stored in the database, ordered by the
+    /// date of the entry in descending order
+    /// </summary>
+    /// <returns>A list of all steps entries</returns>
     public List<StepsEntry> GetAll() {
         SqliteCommand selectCmd = _connection.CreateCommand();
         selectCmd.CommandText =

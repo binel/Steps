@@ -1,14 +1,18 @@
 
 namespace Steps.Api;
 
+/// <summary>
+/// Entrypoint
+/// </summary>
 public class Program {
+    /// <summary>
+    /// Entrypoint
+    /// </summary>
+    /// <param name="args">The only accepted argument is a database connection string</param>
     public static void Main(string[] args) {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         _ = builder.Services.AddAuthorization();
-
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         _ = builder.Services.AddOpenApi();
 
         // allow the database connection string to be passed in 
@@ -50,17 +54,13 @@ public class Program {
         // k3s base path, probably breaks docker compose setup
         _ = app.UsePathBase("/api");
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment()) {
             _ = app.MapOpenApi();
         }
 
         _ = app.MapControllers();
-
         _ = app.UseHttpsRedirection();
-
         _ = app.UseAuthorization();
-
         _ = app.UseCors();
 
         app.Run();
