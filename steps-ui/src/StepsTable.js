@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './StepsTable.css';
 
 function StepsTable({ data, onAdd, onDelete }) {
@@ -79,5 +80,11 @@ function StepsTable({ data, onAdd, onDelete }) {
     </div>
   );
 }
+
+StepsTable.propTypes = {
+  data: PropTypes.object.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default StepsTable;

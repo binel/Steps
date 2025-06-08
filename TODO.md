@@ -1,7 +1,6 @@
 # TODO 
 
 ## Chores 
-- Add a linter / formatter for the steps-ui project 
 - Fix and document how to run locally 
 
 ## Bugs 

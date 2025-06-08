@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Stats.css';
 
 function Stats({ totalSteps, days }) {
@@ -13,19 +14,19 @@ function Stats({ totalSteps, days }) {
     return (
       <div className="stats-container">
         <div className="stats-label">
-            You've taken <b>{totalSteps.toLocaleString()}</b> steps since the project began <b>{days.toLocaleString()}</b> days ago.
+            You&apos;ve taken <b>{totalSteps.toLocaleString()}</b> steps since the project began <b>{days.toLocaleString()}</b> days ago.
         </div>
         <div className="stats-label">
-            Compared against your previous average of <b>5000</b> steps per day, that's an additional <b>{additionalSteps.toLocaleString()}</b> steps.
+            Compared against your previous average of <b>5000</b> steps per day, that&apos;s an additional <b>{additionalSteps.toLocaleString()}</b> steps.
         </div>        
         <div className="stats-label">
-            That's around <b>{calories.toLocaleString()}</b> calories. 
+            That&apos;s around <b>{calories.toLocaleString()}</b> calories. 
         </div>
         <div className="stats-label">
             Which is around <b>{fatPounds.toLocaleString()}</b> pounds of fat. 
         </div>
         <div className="stats-label">
-            That's about <b>{mcChickens.toLocaleString()}</b> McChickens,
+            That&apos;s about <b>{mcChickens.toLocaleString()}</b> McChickens,
         </div>
         <div className="stats-label">
             <b>{pizza.toLocaleString()}</b> medium Dominos Pepperoni Pizzas, 
@@ -34,7 +35,7 @@ function Stats({ totalSteps, days }) {
             or <b>{mandm.toLocaleString()}</b> M&Ms. 
         </div>
         <div className="stats-label">
-            In total you've traveled about <b>{miles.toLocaleString()}</b> miles. 
+            In total you&apos;ve traveled about <b>{miles.toLocaleString()}</b> miles. 
         </div>
         <div className="stats-label">
             Which is about about <b>{usWidth.toLocaleString()}%</b> of the width of the United States. 
@@ -42,5 +43,10 @@ function Stats({ totalSteps, days }) {
       </div>
     );
   }
+
+  Stats.propTypes = {
+    totalSteps: PropTypes.number.isRequired,
+    days: PropTypes.number.isRequired,
+  };
   
   export default Stats;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './StepProgress.css';
 
 function StepProgress({ steps, goal, goalLabel }) {
@@ -19,5 +20,11 @@ function StepProgress({ steps, goal, goalLabel }) {
     </div>
   );
 }
+
+StepProgress.propTypes = {
+  steps: PropTypes.number.isRequired,
+  goal: PropTypes.number.isRequired,
+  goalLabel: PropTypes.string.isRequired,
+};
 
 export default StepProgress;
