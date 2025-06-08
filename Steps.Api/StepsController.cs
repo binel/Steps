@@ -4,9 +4,9 @@ namespace Steps.Api;
 
 [ApiController]
 [Route("[controller]")]
-public class StepsController: ControllerBase {
+public class StepsController : ControllerBase {
 
-    private readonly StepsRepository _stepsRepository; 
+    private readonly StepsRepository _stepsRepository;
 
     public StepsController(StepsRepository stepsRepository) {
         _stepsRepository = stepsRepository;

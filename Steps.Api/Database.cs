@@ -1,22 +1,22 @@
-namespace Steps.Api;
-
 using Microsoft.Data.Sqlite;
 
+namespace Steps.Api;
+
 public class Database {
-    private string _connectionString = "DataSource=:memory:";
+    private readonly string _connectionString = "DataSource=:memory:";
 
-    private SqliteConnection _connection;
+    private SqliteConnection? _connection;
 
-    public Database() {}
-    
+    public Database() {
+
+    }
+
     public Database(string connectionOverride) {
         _connectionString = connectionOverride;
     }
 
     public SqliteConnection GetConnection() {
-        if (_connection == null) {
-            _connection = new SqliteConnection(_connectionString);
-        }
+        _connection ??= new SqliteConnection(_connectionString);
 
         if (_connection.State == System.Data.ConnectionState.Closed) {
             _connection.Open();
