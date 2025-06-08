@@ -113,10 +113,10 @@ function App() {
     <div className="App">
       <h1>Steps</h1>
       <div>
-        <StepProgress steps={weekAverageSteps} goal={12000} goalLabel={"One Week"}></StepProgress>
+        <StepProgress steps={weekAverageSteps} goal={15000} goalLabel={"One Week"}></StepProgress>
       </div>
       <div>
-        <StepProgress steps={monthAverageSteps} goal={10000} goalLabel={"One Month"}></StepProgress>
+        <StepProgress steps={monthAverageSteps} goal={15000} goalLabel={"One Month"}></StepProgress>
       </div>
       <div>
         <Stats totalSteps={totalSteps} days={days}></Stats>
