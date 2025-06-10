@@ -50,6 +50,7 @@ function App() {
         .then(setStepsData)
         .catch((err) => {
           console.error('Failed to fetch steps:', err);
+          setLoadError(true);
         });
   }
 
@@ -65,6 +66,7 @@ function App() {
       .then(setGoalData)
       .catch((err) => {
         console.error('Failed to fetch goals:', err);
+        setLoadError(true);
       })
   }
 
@@ -120,6 +122,7 @@ function App() {
   const [goalData, setGoalData] = useState({
     goalSteps: 0
   });
+  const [loadError, setLoadError] = useState(false);
   const days = stepsData.length;
   const weekData = getWeekData(stepsData);
   const weekAverageSteps = computeAverageSteps(weekData);
@@ -130,18 +133,22 @@ function App() {
   return (
     <div className="App">
       <h1>Steps</h1>
-      <div>
-        <StepProgress steps={weekAverageSteps} goal={goalData.goalSteps} goalLabel={"One Week"}></StepProgress>
-      </div>
-      <div>
-        <StepProgress steps={monthAverageSteps} goal={15000} goalLabel={"One Month"}></StepProgress>
-      </div>
-      <div>
-        <Stats totalSteps={totalSteps} days={days}></Stats>
-      </div>
-      <div>
-        <StepsTable data={stepsData} onAdd={onAdd} onDelete={onDelete}/>
-      </div>
+      {loadError ? ( <p>Error loading data from backend</p> ) : (
+        <>
+          <div>
+            <StepProgress steps={weekAverageSteps} goal={goalData.goalSteps} goalLabel={"One Week"}></StepProgress>
+          </div>
+          <div>
+            <StepProgress steps={monthAverageSteps} goal={15000} goalLabel={"One Month"}></StepProgress>
+          </div>
+          <div>
+            <Stats totalSteps={totalSteps} days={days}></Stats>
+          </div>
+          <div>
+            <StepsTable data={stepsData} onAdd={onAdd} onDelete={onDelete}/>
+          </div>
+        </>
+      )}
     </div>
   );
 }

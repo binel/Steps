@@ -35,10 +35,6 @@ public class Program {
                     .AllowAnyMethod()
                     .AllowAnyHeader();
 
-                _ = policy.WithOrigins("http://homelab.io:3000") // docker compose setup
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
-
                 _ = policy.WithOrigins("http://homelab.io") // k3s setup 
                     .AllowAnyMethod()
                     .AllowAnyHeader();
