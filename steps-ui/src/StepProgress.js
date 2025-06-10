@@ -3,6 +3,22 @@ import PropTypes from 'prop-types';
 import './StepProgress.css';
 
 function StepProgress({ steps, goal, goalLabel }) {
+
+  if (typeof steps !== 'number') {
+    console.warn(`Invalid prop 'steps': expected number, got ${typeof steps}`);
+    steps = 0;
+  }
+
+  if (typeof goal !== 'number') {
+    console.warn(`Invalid prop 'goal': expected number, got ${typeof goal}`);
+    goal = 0;
+  }
+
+  if (typeof goalLabel !== 'string') {
+    console.warn(`Invalid prop 'goalLabel': expected string, got ${typeof goalLabel}`);
+    goalLabel = "err";
+  }
+
   const maxSteps = Math.max(steps, goal);
   const overGoal = steps > goal;
   const progressPercent = (steps / maxSteps) * 100;

@@ -39,7 +39,7 @@ function computeTotalSteps(data) {
 
 function App() {
   const loadSteps = () => {
-    console.log(`trying to call with url ${apiUrl}`);
+    console.log(`loading step information...`);
     fetch(`${apiUrl}/steps/getStepEntries`)
         .then((res) => {
           if (!res.ok) {
@@ -51,6 +51,21 @@ function App() {
         .catch((err) => {
           console.error('Failed to fetch steps:', err);
         });
+  }
+
+  const loadGoals = () => {
+    console.log(`loading goal information...`);
+    fetch(`${apiUrl}/goal/getWeeklyGoal`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Server responded with status ${res.status}`);
+        }
+        return res.json()
+      })
+      .then(setGoalData)
+      .catch((err) => {
+        console.error('Failed to fetch goals:', err);
+      })
   }
 
   const onAdd = (addData) => {
@@ -65,7 +80,7 @@ function App() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)
-    })
+        })
         .then((res) => {
             if (!res.ok) throw new Error('Failed to submit new steps');
             return res.text;
@@ -83,7 +98,7 @@ function App() {
       method: 'DELETE',
       headers: {
       },
-  })
+      })
       .then((res) => {
           if (!res.ok) throw new Error('Failed to delete');
           return res.text;
@@ -98,10 +113,13 @@ function App() {
   
   useEffect(() => {
     loadSteps();
+    loadGoals();
   }, []);
 
   const [stepsData, setStepsData] = useState([]);
-  
+  const [goalData, setGoalData] = useState({
+    goalSteps: 0
+  });
   const days = stepsData.length;
   const weekData = getWeekData(stepsData);
   const weekAverageSteps = computeAverageSteps(weekData);
@@ -113,7 +131,7 @@ function App() {
     <div className="App">
       <h1>Steps</h1>
       <div>
-        <StepProgress steps={weekAverageSteps} goal={15000} goalLabel={"One Week"}></StepProgress>
+        <StepProgress steps={weekAverageSteps} goal={goalData.goalSteps} goalLabel={"One Week"}></StepProgress>
       </div>
       <div>
         <StepProgress steps={monthAverageSteps} goal={15000} goalLabel={"One Month"}></StepProgress>
