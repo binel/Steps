@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import './Stats.css';
 
 function Stats({ totalSteps, days }) {
+
+    if (typeof totalSteps !== 'number') {
+        console.warn(`Invalid prop 'totalSteps': expected number, got ${typeof steps}`);
+        totalSteps = 0;
+      }
+    
+      if (typeof days !== 'number') {
+        console.warn(`Invalid prop 'days': expected number, got ${typeof goal}`);
+        days = 0;
+      }   
+
     const additionalSteps = totalSteps - (5000 * days)
     const calories = (additionalSteps / 1000) * 50;
     const fatPounds = calories / 3500;
