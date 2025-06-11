@@ -31,7 +31,7 @@ public class Program {
 
         _ = builder.Services.AddCors(options => {
             options.AddDefaultPolicy(policy => {
-                _ = policy.WithOrigins("http://localhost:3000") // temporary
+                _ = policy.WithOrigins("http://localhost:3000") // local setup
                     .AllowAnyMethod()
                     .AllowAnyHeader();
 
@@ -42,13 +42,19 @@ public class Program {
         });
 
         _ = builder.WebHost.ConfigureKestrel(serverOptions => {
-            serverOptions.ListenAnyIP(80);
+            if (builder.Environment.IsDevelopment()) {
+                serverOptions.ListenAnyIP(3001);
+            }
+            else {
+                serverOptions.ListenAnyIP(80);
+            }
         });
 
         WebApplication app = builder.Build();
 
-        // k3s base path, probably breaks docker compose setup
-        _ = app.UsePathBase("/api");
+        if (!app.Environment.IsDevelopment()) {
+            _ = app.UsePathBase("/api"); // for k8s setup 
+        }
 
         if (app.Environment.IsDevelopment()) {
             _ = app.MapOpenApi();
