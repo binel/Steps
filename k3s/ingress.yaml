@@ -9,14 +9,14 @@ spec:
     - host: homelab.io
       http:
         paths:
-          - path: /
+          - path: /steps
             pathType: Prefix
             backend:
               service:
                 name: steps-ui
                 port:
                   number: 80
-          - path: /api
+          - path: /stepsapi
             pathType: Prefix
             backend:
               service:
