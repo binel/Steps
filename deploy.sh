@@ -1,4 +1,4 @@
-docker build -t localhost/steps-ui:latest ./steps-ui --build-arg REACT_APP_API_URL=http://homelab.io/api
+docker build -t localhost/steps-ui:latest ./steps-ui --build-arg REACT_APP_API_URL=http://steps.homelab.io/api
 docker build -t localhost/steps-api:latest ./Steps.Api
 docker save localhost/steps-ui:latest -o steps-ui.tar
 docker save localhost/steps-api:latest -o steps-api.tar
