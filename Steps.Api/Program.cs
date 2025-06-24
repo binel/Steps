@@ -35,7 +35,7 @@ public class Program {
                     .AllowAnyMethod()
                     .AllowAnyHeader();
 
-                _ = policy.WithOrigins("http://homelab.io") // k3s setup 
+                _ = policy.WithOrigins("http://steps.homelab.io") // k3s setup 
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });

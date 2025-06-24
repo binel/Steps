@@ -1,8 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base
 WORKDIR /app
 EXPOSE 80
-
-ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_ENVIRONMENT=Production
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build 
 WORKDIR /src
